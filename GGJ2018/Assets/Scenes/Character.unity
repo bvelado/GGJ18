@@ -193,7 +193,7 @@ Transform:
   m_GameObject: {fileID: 146252896}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 146252896}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39c197e7f8676c64bb7aad875e20cef8, type: 3}
+  m_Script: {fileID: 11500000, guid: dd842b9b311380840bebf6d0d3661d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _initialMass: 1
@@ -216,13 +216,19 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 2
       time: -0.3
-      value: -1
+      value: -0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 1.6666666
+      outSlope: 1.6666666
+      tangentMode: 1
+    - serializedVersion: 2
       time: 0.3
-      value: 1
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -413,7 +419,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 240980387}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39c197e7f8676c64bb7aad875e20cef8, type: 3}
+  m_Script: {fileID: 11500000, guid: dd842b9b311380840bebf6d0d3661d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _initialMass: 1
@@ -423,13 +429,19 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 2
       time: -0.3
-      value: -1
+      value: -0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 1.6666666
+      outSlope: 1.6666666
+      tangentMode: 1
+    - serializedVersion: 2
       time: 0.3
-      value: 1
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -497,7 +509,7 @@ Transform:
   m_GameObject: {fileID: 240980387}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.95, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4

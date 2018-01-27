@@ -17,9 +17,14 @@ public class Level : MonoBehaviour {
 	private LinkedList<LevelChunk> activeChunks = new LinkedList<LevelChunk>();
 	[SerializeField][Range(0.1f,4f)] private float moveSpeed = 1f;
 
-	private Coroutine playCoroutine;
-
 	#endregion
+
+	public void GenerateAllChunks(){
+		int count = simultaneousChunks - activeChunks.Count;
+		for(int i = 0; i < count; i++){
+			GenerateChunk(transform.position + transform.forward * (chunkSize * i + chunkDespawnDistance), Quaternion.identity);
+		}
+	}
 
 	public void TogglePlay() {
 		play = !play;
@@ -32,6 +37,9 @@ public class Level : MonoBehaviour {
 #if UNITY_EDITOR
 /// FOR DEBUG PURPOSES
 		if(Input.GetKeyDown(KeyCode.P)){
+			if(activeChunks.Count < simultaneousChunks)
+				GenerateAllChunks();
+
 			TogglePlay();
 		}
 #endif

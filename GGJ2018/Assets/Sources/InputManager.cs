@@ -5,36 +5,47 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class InputManager : MonoBehaviour {
-    public event Action OnTakePaperP1KeyPressed;
-    public event Action OnGivePaperP1KeyPressed;
+    bool _tpP1Pressed = false;
+    bool _tpP2Pressed = false;
+    bool _gpP1Pressed = false;
+    bool _gpP2Pressed = false;
 
-    public event Action OnTakePaperP2KeyPressed;
+    public event Action OnGivePaperP1KeyPressed;
+    public event Action OnGivePaperP1KeyReleased;
+
     public event Action OnGivePaperP2KeyPressed;
+    public event Action OnGivePaperP2KeyReleased;
+
+
 
     public UnityEvent OnSelectKeyPressed;
     public UnityEvent OnBackKeyPressed;
     public UnityEvent OnPauseKeyPressed;
 
     void Update () {
-		if(Input.GetAxis("Take Paper (P1)") > 0.5f)
-        {
-            RaiseAction(OnTakePaperP1KeyPressed);
-        }
-        else if(Input.GetAxis("Give Paper (P1)") > 0.5f)
+        
+        if(Input.GetAxis("Give Paper (P1)") > 0.5f)
         {
             RaiseAction(OnGivePaperP1KeyPressed);
+            _gpP1Pressed = true;
         }
-
-        if (Input.GetAxis("Take Paper (P2)") > 0.5f)
+        else if (Input.GetAxis("Give Paper (P1)") < 0.5f && _gpP1Pressed)
         {
-            RaiseAction(OnTakePaperP2KeyPressed);
+            RaiseAction(OnGivePaperP1KeyReleased);
+            _gpP1Pressed = false;
         }
-        else if (Input.GetAxis("Give Paper (P2)") > 0.5f)
+        if (Input.GetAxis("Give Paper (P2)") > 0.5f)
         {
             RaiseAction(OnGivePaperP2KeyPressed);
+            _gpP2Pressed = true;
+        }
+        else if (Input.GetAxis("Give Paper (P2)") < 0.5f && _gpP2Pressed)
+        {
+            RaiseAction(OnGivePaperP2KeyReleased);
+            _gpP2Pressed = false;
         }
 
-        if(Input.GetAxis("Select") > 0.5f)
+        if (Input.GetAxis("Select") > 0.5f)
         {
             RaiseEvent(OnSelectKeyPressed);
         }

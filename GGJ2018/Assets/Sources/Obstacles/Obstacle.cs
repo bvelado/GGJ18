@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class Obstacle : MonoBehaviour {
 
+
+
 	private void Reset(){
 		gameObject.isStatic = true;
 		GetComponent<BoxCollider>().isTrigger = true;
@@ -13,7 +15,10 @@ public class Obstacle : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other)
 	{
-		Debug.Log(other.name);
+		var plane = other.GetComponent<PaperPlane>();
+		if(plane){
+			Debug.Log("Boop " + plane.name);
+		}
 	}
 
 }

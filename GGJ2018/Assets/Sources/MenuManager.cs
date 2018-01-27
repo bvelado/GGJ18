@@ -23,6 +23,7 @@ public class MenuManager : MonoBehaviour {
 
     public void GoToMainMenu()
     {
+        _mainMenuCanvas.GetComponent<CanvasGroup>().alpha = 0f;
         _mainMenuCanvas.SetActive(true);
         _showTriggerEvent.OnAnimationEnd.AddListener(RegisterSpaceKeyEvent);
     }

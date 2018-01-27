@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 4903749100341148}
   - component: {fileID: 33888003827509554}
   - component: {fileID: 23606784206123276}
+  - component: {fileID: 114427381392949128}
   m_Layer: 0
   m_Name: Biom01_central01
   m_TagString: Untagged
@@ -228,3 +229,14 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1338601283332270}
   m_Mesh: {fileID: 4300064, guid: dcda1b3a7e72386468be8e38cc7ef5d1, type: 3}
+--- !u!114 &114427381392949128
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1338601283332270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9624be48ef144c645ae19f04615793f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

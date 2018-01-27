@@ -16,15 +16,16 @@ public class Level : MonoBehaviour {
 
 	#region Variables
 	private LinkedList<LevelChunk> activeChunks = new LinkedList<LevelChunk>();
-	[SerializeField][Range(0.1f,4f)] private float moveSpeed = 1f;
+	[SerializeField][Range(0.1f,8f)] private float moveSpeed = 1f;
 
 	#endregion
 
 	public void GenerateAllChunks(bool blank = true){
 		int count = simultaneousChunks - activeChunks.Count;
 		for(int i = 0; i < count; i++){
-			GenerateChunk(transform.position + transform.forward * (chunkSize * i + chunkDespawnDistance), Quaternion.identity, blank);
-		}
+            //GenerateChunk(transform.position + transform.forward * (chunkSize * i + chunkDespawnDistance), Quaternion.identity, blank);
+            GenerateChunk(transform.position + transform.forward * (chunkSize * i + chunkDespawnDistance), Quaternion.AngleAxis(90f, Vector3.up), blank);
+        }
 	}
 
 	public void TogglePlay() {
@@ -62,11 +63,13 @@ public class Level : MonoBehaviour {
 	private void GenerateNewChunks(){
 		if(activeChunks.Count < simultaneousChunks) {
 			if(activeChunks.Count == 0) {
-				GenerateChunk(transform.position + transform.forward * chunkSpawnDistance, Quaternion.identity);
-			} else if (activeChunks.First.Value.transform.position.z + chunkSize < chunkSpawnDistance) 
+                GenerateChunk(transform.position + transform.forward * chunkSpawnDistance, Quaternion.AngleAxis(90f, Vector3.up));
+                //GenerateChunk(transform.position + transform.forward * chunkSpawnDistance, Quaternion.identity);
+            } else if (activeChunks.First.Value.transform.position.z + chunkSize < chunkSpawnDistance) 
 			{
-				GenerateChunk(transform.position + transform.forward * (activeChunks.First.Value.transform.position.z + chunkSize), Quaternion.identity);
-			}
+                //GenerateChunk(transform.position + transform.forward * (activeChunks.First.Value.transform.position.z + chunkSize), Quaternion.identity);
+                GenerateChunk(transform.position + transform.forward * (activeChunks.First.Value.transform.position.z + chunkSize), Quaternion.AngleAxis(90f, Vector3.up));
+            }
 		}
 	}
 

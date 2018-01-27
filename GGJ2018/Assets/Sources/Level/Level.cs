@@ -5,6 +5,7 @@ using UnityEngine;
 public class Level : MonoBehaviour {
 	
 	[SerializeField] ObjectPool[] chunkPools;
+	[SerializeField] ObjectPool blankChunkPool;
 	private bool play = false;
 
 	[Header("Spawner parameters")]
@@ -17,9 +18,14 @@ public class Level : MonoBehaviour {
 	private LinkedList<LevelChunk> activeChunks = new LinkedList<LevelChunk>();
 	[SerializeField][Range(0.1f,4f)] private float moveSpeed = 1f;
 
-	private Coroutine playCoroutine;
-
 	#endregion
+
+	public void GenerateAllChunks(bool blank = true){
+		int count = simultaneousChunks - activeChunks.Count;
+		for(int i = 0; i < count; i++){
+			GenerateChunk(transform.position + transform.forward * (chunkSize * i + chunkDespawnDistance), Quaternion.identity, blank);
+		}
+	}
 
 	public void TogglePlay() {
 		play = !play;
@@ -32,6 +38,9 @@ public class Level : MonoBehaviour {
 #if UNITY_EDITOR
 /// FOR DEBUG PURPOSES
 		if(Input.GetKeyDown(KeyCode.P)){
+			if(activeChunks.Count < simultaneousChunks)
+				GenerateAllChunks();
+
 			TogglePlay();
 		}
 #endif
@@ -74,8 +83,9 @@ public class Level : MonoBehaviour {
 
 	#region Chunk methods
 
-	private void GenerateChunk(Vector3 position, Quaternion rotation) {
-		var newChunk = 
+	private void GenerateChunk(Vector3 position, Quaternion rotation, bool blank = false) {
+		var newChunk = blank ?
+			blankChunkPool.GetObject().GetComponent<LevelChunk>() :
 			chunkPools[Random.Range(0, chunkPools.Length)].GetObject().GetComponent<LevelChunk>();
 
 		newChunk.transform.position = position;

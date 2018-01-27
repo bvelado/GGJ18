@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initialMass: 1
+  _heightFactor: 2
   _massEvolution:
     serializedVersion: 2
     m_Curve:
@@ -265,6 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initialMass: 1
+  _heightFactor: 1
   _massEvolution:
     serializedVersion: 2
     m_Curve:

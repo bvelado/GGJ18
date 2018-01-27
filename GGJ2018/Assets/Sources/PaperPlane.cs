@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PaperPlane : MonoBehaviour {
     [SerializeField] float _initialMass = 1f;
+    [Tooltip ("Factor applied to vertical translation during mass change")]
+    [SerializeField] float _heightFactor = 1f;
     [SerializeField] AnimationCurve _massEvolution = new AnimationCurve();
 
     float _currentTime = 0f;
@@ -49,6 +51,6 @@ public class PaperPlane : MonoBehaviour {
     {
         var massEvolution = _massEvolution.Evaluate(_currentTime);
         transform.localScale = new Vector3(_currentMass, _currentMass, _currentMass);
-        transform.localPosition = _initialPosition + Vector3.up * massEvolution;
+        transform.localPosition = _initialPosition + Vector3.up * massEvolution * _heightFactor;
     }
 }

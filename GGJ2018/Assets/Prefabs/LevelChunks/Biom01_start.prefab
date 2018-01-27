@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4344116905105830}
   - component: {fileID: 33526991881363728}
   - component: {fileID: 23077380499553202}
+  - component: {fileID: 114303013443731656}
   m_Layer: 0
   m_Name: Biom01_start
   m_TagString: Untagged
@@ -228,3 +229,14 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1384135073049334}
   m_Mesh: {fileID: 4300090, guid: dcda1b3a7e72386468be8e38cc7ef5d1, type: 3}
+--- !u!114 &114303013443731656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1186961819669782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9624be48ef144c645ae19f04615793f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

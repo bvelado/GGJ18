@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 3274bec2744967b47b11c6dea26ae4f2
-timeCreated: 1517005717
+timeCreated: 1517048034
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -8,16 +8,16 @@ ModelImporter:
     100000: //RootNode
     400000: //RootNode
     2100000: M_PaperPlane
-    2300000: //RootNode
-    3300000: //RootNode
     4300000: SM_PaperPlane
+    7400000: Take 001
     9500000: //RootNode
+    13700000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0

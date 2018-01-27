@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33369171911980480}
   - component: {fileID: 65639323022501542}
   - component: {fileID: 23891675172110542}
+  - component: {fileID: 114229582829071862}
   m_Layer: 0
   m_Name: Chunk3
   m_TagString: Untagged
@@ -95,3 +96,14 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114229582829071862
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1569821109787966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9624be48ef144c645ae19f04615793f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

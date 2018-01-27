@@ -43,19 +43,19 @@ public class InputManager : MonoBehaviour {
             _gpP2Pressed = false;
         }
 
-        if (Input.GetAxis("Select") > 0.5f)
+        if (Input.GetButtonDown("Select"))
         {
             RaiseEvent(OnSelectKeyPressed);
         }
-        if (Input.GetAxis("Back") > 0.5f)
+        if (Input.GetButtonDown("Back"))
         {
             RaiseEvent(OnBackKeyPressed);
         }
-        if (Input.GetAxis("Pause") > 0.5f)
+        if (Input.GetButtonDown("Pause"))
         {
             RaiseEvent(OnPauseKeyPressed);
         }
-        if(Input.GetAxis("Space") > 0.5f)
+        if(Input.GetButtonDown("Space"))
         {
             RaiseEvent(OnSpaceKeyPressed);
         }

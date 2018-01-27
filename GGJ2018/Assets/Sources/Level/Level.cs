@@ -20,6 +20,10 @@ public class Level : MonoBehaviour {
 
 	#endregion
 
+	private void Start(){
+		GenerateAllChunks();
+	}
+
 	public void GenerateAllChunks(bool blank = true){
 		int count = simultaneousChunks - activeChunks.Count;
 		for(int i = 0; i < count; i++){
@@ -28,23 +32,20 @@ public class Level : MonoBehaviour {
         }
 	}
 
-	public void TogglePlay() {
-		play = !play;
+	public void SetPlay(bool play) {
+		this.play = play;
 	}
 
 	#region MonoBehaviour messages
 
 	private void Update(){
 
-#if UNITY_EDITOR
-/// FOR DEBUG PURPOSES
-		if(Input.GetKeyDown(KeyCode.L)){
-			if(activeChunks.Count < simultaneousChunks)
-				GenerateAllChunks();
-
-			TogglePlay();
-		}
-#endif
+// #if UNITY_EDITOR
+// /// FOR DEBUG PURPOSES
+// 		if(Input.GetKeyDown(KeyCode.L)){
+// 			SetPlay();
+// 		}
+// #endif
 		if(play){
 			ClearUnusedChunks();
 			GenerateNewChunks();

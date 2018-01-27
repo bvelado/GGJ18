@@ -49,6 +49,6 @@ public class PlayerController : MonoBehaviour {
     {
         var massEvolution = _massEvolution.Evaluate(_currentTime);
         transform.localScale = new Vector3(_currentMass, _currentMass, _currentMass);
-        transform.localPosition = _initialPosition + Vector3.up * massEvolution * _heightFactor;
+        transform.localPosition = _initialPosition - Vector3.up * massEvolution * _heightFactor;
     }
 }

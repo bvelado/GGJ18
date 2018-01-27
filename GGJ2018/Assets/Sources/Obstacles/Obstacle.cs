@@ -15,7 +15,7 @@ public class Obstacle : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other)
 	{
-		var plane = other.GetComponent<PaperPlane>();
+		var plane = other.GetComponent<PlayerController>();
 		if(plane){
 			Debug.Log("Boop " + plane.name);
 		}

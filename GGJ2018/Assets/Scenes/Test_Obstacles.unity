@@ -212,6 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initialMass: 1
   _heightFactor: 2
+  _evolutionSpeed: 3.3
   _massEvolution:
     serializedVersion: 2
     m_Curve:
@@ -325,6 +326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initialMass: 1
   _heightFactor: 2
+  _evolutionSpeed: 3.3
   _massEvolution:
     serializedVersion: 2
     m_Curve:
@@ -504,8 +506,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 404005859}
-  m_LocalRotation: {x: 0.17748739, y: -0.7588321, z: 0.23125467, w: 0.5824032}
-  m_LocalPosition: {x: 9.159852, y: 7.791808, z: 4.479485}
+  m_LocalRotation: {x: -0.26114902, y: 0.5732269, z: -0.19943003, w: -0.7506263}
+  m_LocalPosition: {x: 6.355797, y: 6.946987, z: -1.9274831}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -802,6 +804,7 @@ MonoBehaviour:
   - {fileID: 1385393567}
   - {fileID: 750011010}
   - {fileID: 1305817672}
+  blankChunkPool: {fileID: 750011010}
   chunkSize: 8
   chunkSpawnDistance: 22
   chunkDespawnDistance: -18

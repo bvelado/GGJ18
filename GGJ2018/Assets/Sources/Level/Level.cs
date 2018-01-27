@@ -5,6 +5,7 @@ using UnityEngine;
 public class Level : MonoBehaviour {
 	
 	[SerializeField] ObjectPool[] chunkPools;
+	[SerializeField] ObjectPool blankChunkPool;
 	private bool play = false;
 
 	[Header("Spawner parameters")]
@@ -19,10 +20,10 @@ public class Level : MonoBehaviour {
 
 	#endregion
 
-	public void GenerateAllChunks(){
+	public void GenerateAllChunks(bool blank = true){
 		int count = simultaneousChunks - activeChunks.Count;
 		for(int i = 0; i < count; i++){
-			GenerateChunk(transform.position + transform.forward * (chunkSize * i + chunkDespawnDistance), Quaternion.identity);
+			GenerateChunk(transform.position + transform.forward * (chunkSize * i + chunkDespawnDistance), Quaternion.identity, blank);
 		}
 	}
 
@@ -82,8 +83,9 @@ public class Level : MonoBehaviour {
 
 	#region Chunk methods
 
-	private void GenerateChunk(Vector3 position, Quaternion rotation) {
-		var newChunk = 
+	private void GenerateChunk(Vector3 position, Quaternion rotation, bool blank = false) {
+		var newChunk = blank ?
+			blankChunkPool.GetObject().GetComponent<LevelChunk>() :
 			chunkPools[Random.Range(0, chunkPools.Length)].GetObject().GetComponent<LevelChunk>();
 
 		newChunk.transform.position = position;

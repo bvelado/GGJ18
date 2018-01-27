@@ -6,6 +6,7 @@ public class PaperPlane : MonoBehaviour {
     [SerializeField] float _initialMass = 1f;
     [Tooltip ("Factor applied to vertical translation during mass change")]
     [SerializeField] float _heightFactor = 1f;
+    [SerializeField][Range(1f,10f)] float _evolutionSpeed = 1f;
     [SerializeField] AnimationCurve _massEvolution = new AnimationCurve();
 
     float _currentTime = 0f;
@@ -31,7 +32,7 @@ public class PaperPlane : MonoBehaviour {
 
     public void TakePaper()
     {
-        _currentTime -= Time.deltaTime;
+        _currentTime -= Time.deltaTime * _evolutionSpeed;
         _currentTime = Mathf.Max(_currentTime, _minCurveTime);
         _currentMass = _initialMass + _massEvolution.Evaluate(_currentTime);
         ReactToMassChange();
@@ -40,7 +41,7 @@ public class PaperPlane : MonoBehaviour {
 
     public void GivePaper()
     {
-        _currentTime += Time.deltaTime;
+        _currentTime += Time.deltaTime * _evolutionSpeed;
         _currentTime = Mathf.Min(_currentTime, _maxCurveTime);
         _currentMass = _initialMass + _massEvolution.Evaluate(_currentTime);
         ReactToMassChange();
@@ -51,6 +52,6 @@ public class PaperPlane : MonoBehaviour {
     {
         var massEvolution = _massEvolution.Evaluate(_currentTime);
         transform.localScale = new Vector3(_currentMass, _currentMass, _currentMass);
-        transform.localPosition = _initialPosition + Vector3.up * massEvolution * _heightFactor;
+        transform.localPosition = _initialPosition - Vector3.up * massEvolution * _heightFactor;
     }
 }

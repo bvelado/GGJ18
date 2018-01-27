@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class InputManager : MonoBehaviour {
-    bool _tpP1Pressed = false;
-    bool _tpP2Pressed = false;
     bool _gpP1Pressed = false;
     bool _gpP2Pressed = false;
 
@@ -21,9 +19,9 @@ public class InputManager : MonoBehaviour {
     public UnityEvent OnSelectKeyPressed;
     public UnityEvent OnBackKeyPressed;
     public UnityEvent OnPauseKeyPressed;
+    public UnityEvent OnSpaceKeyPressed;
 
     void Update () {
-        
         if(Input.GetAxis("Give Paper (P1)") > 0.5f)
         {
             RaiseAction(OnGivePaperP1KeyPressed);
@@ -56,6 +54,10 @@ public class InputManager : MonoBehaviour {
         if (Input.GetAxis("Pause") > 0.5f)
         {
             RaiseEvent(OnPauseKeyPressed);
+        }
+        if(Input.GetAxis("Space") > 0.5f)
+        {
+            RaiseEvent(OnSpaceKeyPressed);
         }
     }
 

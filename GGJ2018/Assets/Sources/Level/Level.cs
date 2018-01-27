@@ -38,7 +38,7 @@ public class Level : MonoBehaviour {
 
 #if UNITY_EDITOR
 /// FOR DEBUG PURPOSES
-		if(Input.GetKeyDown(KeyCode.P)){
+		if(Input.GetKeyDown(KeyCode.L)){
 			if(activeChunks.Count < simultaneousChunks)
 				GenerateAllChunks();
 

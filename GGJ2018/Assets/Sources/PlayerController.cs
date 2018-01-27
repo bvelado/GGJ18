@@ -18,21 +18,25 @@ public class PlayerController : MonoBehaviour {
     private void P1TakePaper()
     {
         _player1.TakePaper();
+        _player2.GivePaper();
     }
 
     private void P2TakePaper()
     {
         _player2.TakePaper();
+        _player1.GivePaper();
     }
 
     private void P1GivePaper()
     {
         _player1.GivePaper();
+        _player2.TakePaper();
     }
 
     private void P2GivePaper()
     {
         _player2.GivePaper();
+        _player1.TakePaper();
     }
 
 }

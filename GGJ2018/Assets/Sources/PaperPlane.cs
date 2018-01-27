@@ -12,9 +12,12 @@ public class PaperPlane : MonoBehaviour {
     float _maxCurveTime;
     float _minCurveTime;
 
+    Vector3 _initialScale;
+
     private void Start()
     {
         _currentMass = _initialMass;
+        _initialScale = transform.localScale;
         _maxCurveTime = _massEvolution.keys[_massEvolution.length - 1].time;
         _minCurveTime = _massEvolution.keys[0].time;
     }
@@ -24,6 +27,7 @@ public class PaperPlane : MonoBehaviour {
         _currentTime -= Time.deltaTime;
         _currentTime = Mathf.Max(_currentTime, _minCurveTime);
         _currentMass = _initialMass + _massEvolution.Evaluate(_currentTime);
+        UpdateScale();
         Debug.Log(string.Format("[TakePaper/{0}] - Current mass : {1}", gameObject.name, _currentMass));
     }
 
@@ -32,6 +36,12 @@ public class PaperPlane : MonoBehaviour {
         _currentTime += Time.deltaTime;
         _currentTime = Mathf.Min(_currentTime, _maxCurveTime);
         _currentMass = _initialMass + _massEvolution.Evaluate(_currentTime);
+        UpdateScale();
         Debug.Log(string.Format("[GivePaper/{0}] - Current mass : {1}", gameObject.name, _currentMass));
+    }
+
+    void UpdateScale()
+    {
+        transform.localScale = new Vector3(_currentMass, _currentMass, _currentMass);
     }
 }

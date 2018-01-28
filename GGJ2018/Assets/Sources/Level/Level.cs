@@ -25,7 +25,7 @@ public class Level : MonoBehaviour {
     }
 
 	private void Start(){
-		GenerateAllChunks(true, 0.6f);
+		GenerateAllChunks(true, 0.4f);
 	}
 
 	public void Clear(){

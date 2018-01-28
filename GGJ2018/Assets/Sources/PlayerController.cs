@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField] float _initialMass = 1f;
@@ -18,6 +19,8 @@ public class PlayerController : MonoBehaviour {
     public bool IsGivingPaper { get; private set; }
 
     Vector3 _initialPosition;
+
+    public UnityEvent PlayerCollidedWithObstacle;
 
     private void Start()
     {
@@ -55,5 +58,6 @@ public class PlayerController : MonoBehaviour {
     public void OnObstacleHit(Collider other) {
         GetComponentInChildren<AudioSource>().Play();
         GetComponent<Animator>().SetTrigger("Crash");
+        PlayerCollidedWithObstacle.Invoke();
     }
 }

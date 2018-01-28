@@ -51,4 +51,8 @@ public class PlayerController : MonoBehaviour {
         transform.localScale = new Vector3(_currentMass, _currentMass, _currentMass);
         transform.localPosition = _initialPosition - Vector3.up * massEvolution * _heightFactor;
     }
+
+    public void OnObstacleHit(Collider other) {
+        GetComponentInChildren<AudioSource>().Play();
+    }
 }

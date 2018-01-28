@@ -397,7 +397,6 @@ GameObject:
   - component: {fileID: 33993434843226780}
   - component: {fileID: 23149738289922692}
   - component: {fileID: 114275300652154782}
-  - component: {fileID: 114295976362919092}
   m_Layer: 0
   m_Name: Biom00_plane03
   m_TagString: Untagged
@@ -5281,14 +5280,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9624be48ef144c645ae19f04615793f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114295976362919092
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1231736306806730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9624be48ef144c645ae19f04615793f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  allowedObstacles:
+  - {fileID: 114393800635149726, guid: ca2b797a050fe9e4fbe4d060159f7f73, type: 2}
+  - {fileID: 114622933932392078, guid: 0cc73d6d9a21ca342891a61b7689e454, type: 2}
+  - {fileID: 114011628126983042, guid: f0f6d223179c675448c23dd6113748ad, type: 2}
+  - {fileID: 114873005954344340, guid: b628763f82e9700499ff762467896ec0, type: 2}
+  - {fileID: 114185605464023854, guid: 5f7323639f6536440a59484860734117, type: 2}
+  - {fileID: 114707217316557686, guid: ef52ab3596ee412488524c24667d2284, type: 2}

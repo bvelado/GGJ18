@@ -15,10 +15,10 @@ public class GameFlowManager : MonoBehaviour {
         _inputManager.OnGivePaperP1KeyPressed += P1GivePaper;
         _inputManager.OnGivePaperP2KeyPressed += P2GivePaper;
 
-        // _levelManager.GenerateAllChunks();
         _levelManager.SetPlay(true);
     }
 
+    /// Quand on meurt
     public void StopGame()
     {
         _inputManager.OnGivePaperP1KeyPressed -= P1GivePaper;

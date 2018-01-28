@@ -39,6 +39,9 @@ GameObject:
   - component: {fileID: 33318108225012118}
   - component: {fileID: 23370088403526166}
   - component: {fileID: 95337375245711206}
+  - component: {fileID: 65248027239086730}
+  - component: {fileID: 65751061105017060}
+  - component: {fileID: 65372050482529932}
   m_Layer: 0
   m_Name: Pr_Car (5)
   m_TagString: Untagged
@@ -157,6 +160,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4866670009979140}
+  - component: {fileID: 114425124420567128}
   m_Layer: 0
   m_Name: Obstacle03-2
   m_TagString: Untagged
@@ -977,6 +981,42 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1185114009870178}
   m_Mesh: {fileID: 4300098, guid: dcda1b3a7e72386468be8e38cc7ef5d1, type: 3}
+--- !u!65 &65248027239086730
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1079303321827656}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.71342826, y: 0.4529484, z: 1.5427461}
+  m_Center: {x: -4.448774e-16, y: 0.14081508, z: 5.284524e-10}
+--- !u!65 &65372050482529932
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1079303321827656}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.71342826, y: 0.16514423, z: 0.6191001}
+  m_Center: {x: 4.971757e-16, y: 0.44602042, z: -0.11037217}
+--- !u!65 &65751061105017060
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1079303321827656}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.71342826, y: 0.29444432, z: 0.78712857}
+  m_Center: {x: -5.4775516e-15, y: -0.06770076, z: 0.38276792}
 --- !u!95 &95337375245711206
 Animator:
   serializedVersion: 3
@@ -1011,3 +1051,14 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114425124420567128
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1864194243134270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ee1c7e008a748b418c0b89b62f6a182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

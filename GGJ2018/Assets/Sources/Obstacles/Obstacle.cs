@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(Collider))]
 public class Obstacle : MonoBehaviour {
-
-
 
 	private void Reset(){
 		gameObject.isStatic = true;
-		GetComponent<BoxCollider>().isTrigger = true;
+		foreach(var c in GetComponents<Collider>())
+			c.isTrigger = true;
 	}
 
 	private void OnTriggerEnter(Collider other)

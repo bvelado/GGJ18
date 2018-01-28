@@ -16,7 +16,7 @@ public class Obstacle : MonoBehaviour {
 	{
 		var plane = other.GetComponent<PlayerController>();
 		if(plane){
-			Debug.Log("Boop " + plane.name);
+			plane.OnObstacleHit(other);
 		}
 	}
 

@@ -9,7 +9,7 @@ Material:
   m_Name: trunk
   m_Shader: {fileID: 4800000, guid: 2edc5e12df2da0e4984d9e7d51db5932, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -67,7 +67,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Emissive: 0
+    - _Emissive: 0.022
     - _GlossMapScale: 1
     - _Glossiness: 0.289
     - _GlossyReflections: 1
@@ -80,7 +80,7 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - __dirty: 1
+    - __dirty: 0
     m_Colors:
     - _Color: {r: 0.19117647, g: 0.09888438, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

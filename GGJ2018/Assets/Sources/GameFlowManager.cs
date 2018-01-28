@@ -30,7 +30,7 @@ public class GameFlowManager : MonoBehaviour {
 
         if(!firstTime) {
             _levelManager.Clear();
-            _levelManager.GenerateAllChunks(true, 0.6f);
+            _levelManager.GenerateAllChunks(true, 0.4f);
         }
         
         firstTime = false;

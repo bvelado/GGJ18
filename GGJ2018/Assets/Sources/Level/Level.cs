@@ -25,12 +25,12 @@ public class Level : MonoBehaviour {
     }
 
 	private void Start(){
-		GenerateAllChunks(true, 0.4f);
+		GenerateAllChunks(true, 0.6f);
 	}
 
 	public void Clear(){
-		foreach(var chunk in activeChunks){
-			ClearChunk(chunk);
+		while(activeChunks.Count > 0){
+			ClearChunk(activeChunks.Last.Value);
 		}
 	}
 

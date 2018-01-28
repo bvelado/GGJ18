@@ -60,4 +60,8 @@ public class PlayerController : MonoBehaviour {
         GetComponent<Animator>().SetTrigger("Crash");
         PlayerCollidedWithObstacle.Invoke();
     }
+
+    public void ResetModel(){
+        GetComponent<Animator>().SetTrigger("Idle");
+    }
 }

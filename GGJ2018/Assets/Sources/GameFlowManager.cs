@@ -15,6 +15,8 @@ public class GameFlowManager : MonoBehaviour {
     public event Action OnGameResumed;
     public event Action OnGameStopped;
 
+    private bool firstTime = true;
+
     public void StartGame()
     {
         _inputManager.OnGivePaperP1KeyPressed += P1GivePaper;
@@ -23,8 +25,16 @@ public class GameFlowManager : MonoBehaviour {
         _player1.PlayerCollidedWithObstacle.AddListener(StopGame);
         _player2.PlayerCollidedWithObstacle.AddListener(StopGame);
 
-        _levelManager.Clear();
-        _levelManager.GenerateAllChunks(true, 0.4f);
+        _player1.ResetModel();
+        _player2.ResetModel();
+
+        if(!firstTime) {
+            _levelManager.Clear();
+            _levelManager.GenerateAllChunks(true, 0.6f);
+        }
+        
+        firstTime = false;
+        
         _levelManager.SetPlay(true);
         RaiseAction(OnGameStarted);
     }

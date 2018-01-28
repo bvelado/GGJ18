@@ -5,6 +5,7 @@ using UnityEngine;
 public class Level : MonoBehaviour {
 	
 	[SerializeField] ObjectPool[] chunkPools;
+	[SerializeField] ObjectPool blankChunkPool;
 	private bool play = false;
 
 	[Header("Spawner parameters")]
@@ -15,30 +16,55 @@ public class Level : MonoBehaviour {
 
 	#region Variables
 	private LinkedList<LevelChunk> activeChunks = new LinkedList<LevelChunk>();
-	[SerializeField][Range(0.1f,4f)] private float moveSpeed = 1f;
+	[SerializeField][Range(0.1f,8f)] private float moveSpeed = 1f;
 
-	private Coroutine playCoroutine;
+    float _baseMoveSpeed;
 
 	#endregion
 
-	public void TogglePlay() {
-		play = !play;
+    public float MovementSpeed {
+        get { return moveSpeed; }
+    }
+
+	private void Start(){
+		GenerateAllChunks(true, 0.4f);
+        _baseMoveSpeed = moveSpeed;
+	}
+
+	public void Clear(){
+		while(activeChunks.Count > 0){
+			ClearChunk(activeChunks.Last.Value);
+            moveSpeed = _baseMoveSpeed;
+		}
+	}
+
+	public void GenerateAllChunks(bool blank = true, float ratio = 1f){
+		int count = simultaneousChunks - activeChunks.Count;
+		for(int i = 0; i < count; i++){
+            //GenerateChunk(transform.position + transform.forward * (chunkSize * i + chunkDespawnDistance), Quaternion.identity, blank);
+            GenerateChunk(transform.position + transform.forward * (chunkSize * i + chunkDespawnDistance), Quaternion.AngleAxis(90f, Vector3.up), 1f * i / count < ratio ? blank : false);
+        }
+	}
+
+	public void SetPlay(bool play) {
+		this.play = play;
 	}
 
 	#region MonoBehaviour messages
 
 	private void Update(){
 
-#if UNITY_EDITOR
-/// FOR DEBUG PURPOSES
-		if(Input.GetKeyDown(KeyCode.P)){
-			TogglePlay();
-		}
-#endif
+// #if UNITY_EDITOR
+// /// FOR DEBUG PURPOSES
+// 		if(Input.GetKeyDown(KeyCode.L)){
+// 			SetPlay();
+// 		}
+// #endif
 		if(play){
 			ClearUnusedChunks();
 			GenerateNewChunks();
 			MoveActiveChunks();
+            moveSpeed += Time.deltaTime * 0.2f;
 		}
 	}
 
@@ -53,11 +79,13 @@ public class Level : MonoBehaviour {
 	private void GenerateNewChunks(){
 		if(activeChunks.Count < simultaneousChunks) {
 			if(activeChunks.Count == 0) {
-				GenerateChunk(transform.position + transform.forward * chunkSpawnDistance, Quaternion.identity);
-			} else if (activeChunks.First.Value.transform.position.z + chunkSize < chunkSpawnDistance) 
+                GenerateChunk(transform.position + transform.forward * chunkSpawnDistance, Quaternion.AngleAxis(90f, Vector3.up));
+                //GenerateChunk(transform.position + transform.forward * chunkSpawnDistance, Quaternion.identity);
+            } else if (activeChunks.First.Value.transform.position.z + chunkSize < chunkSpawnDistance) 
 			{
-				GenerateChunk(transform.position + transform.forward * (activeChunks.First.Value.transform.position.z + chunkSize), Quaternion.identity);
-			}
+                //GenerateChunk(transform.position + transform.forward * (activeChunks.First.Value.transform.position.z + chunkSize), Quaternion.identity);
+                GenerateChunk(transform.position + transform.forward * (activeChunks.First.Value.transform.position.z + chunkSize), Quaternion.AngleAxis(90f, Vector3.up));
+            }
 		}
 	}
 
@@ -74,8 +102,9 @@ public class Level : MonoBehaviour {
 
 	#region Chunk methods
 
-	private void GenerateChunk(Vector3 position, Quaternion rotation) {
-		var newChunk = 
+	private void GenerateChunk(Vector3 position, Quaternion rotation, bool blank = false) {
+		var newChunk = blank ?
+			blankChunkPool.GetObject().GetComponent<LevelChunk>() :
 			chunkPools[Random.Range(0, chunkPools.Length)].GetObject().GetComponent<LevelChunk>();
 
 		newChunk.transform.position = position;

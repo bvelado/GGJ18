@@ -25,14 +25,20 @@ public class Level : MonoBehaviour {
     }
 
 	private void Start(){
-		GenerateAllChunks();
+		GenerateAllChunks(true, 0.4f);
 	}
 
-	public void GenerateAllChunks(bool blank = true){
+	public void Clear(){
+		foreach(var chunk in activeChunks){
+			ClearChunk(chunk);
+		}
+	}
+
+	public void GenerateAllChunks(bool blank = true, float ratio = 1f){
 		int count = simultaneousChunks - activeChunks.Count;
 		for(int i = 0; i < count; i++){
             //GenerateChunk(transform.position + transform.forward * (chunkSize * i + chunkDespawnDistance), Quaternion.identity, blank);
-            GenerateChunk(transform.position + transform.forward * (chunkSize * i + chunkDespawnDistance), Quaternion.AngleAxis(90f, Vector3.up), blank);
+            GenerateChunk(transform.position + transform.forward * (chunkSize * i + chunkDespawnDistance), Quaternion.AngleAxis(90f, Vector3.up), 1f*i/count < ratio ? blank : false);
         }
 	}
 

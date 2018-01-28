@@ -13,6 +13,8 @@ public class MenuManager : MonoBehaviour {
 
     void Start()
     {
+        _gameFlowManager.OnGameStopped += GoToMainMenu;
+
         GoToMainMenu();
     }
 

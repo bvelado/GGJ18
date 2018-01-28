@@ -38,7 +38,7 @@ public class Level : MonoBehaviour {
 		int count = simultaneousChunks - activeChunks.Count;
 		for(int i = 0; i < count; i++){
             //GenerateChunk(transform.position + transform.forward * (chunkSize * i + chunkDespawnDistance), Quaternion.identity, blank);
-            GenerateChunk(transform.position + transform.forward * (chunkSize * i + chunkDespawnDistance), Quaternion.AngleAxis(90f, Vector3.up), 1f*i/count < ratio ? blank : false);
+            GenerateChunk(transform.position + transform.forward * (chunkSize * i + chunkDespawnDistance), Quaternion.AngleAxis(90f, Vector3.up), 1f * (count - i) < ratio ? blank : false);
         }
 	}
 

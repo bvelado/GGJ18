@@ -9,6 +9,7 @@ public class GameFlowManager : MonoBehaviour {
     [SerializeField] Level _levelManager = null;
     [SerializeField] PlayerController _player1 = null;
     [SerializeField] PlayerController _player2 = null;
+    [SerializeField] AudioSource backgroundAudioSource;
 
     public event Action OnGameStarted;
     public event Action OnGamePaused;
@@ -37,6 +38,8 @@ public class GameFlowManager : MonoBehaviour {
         
         _levelManager.SetPlay(true);
         RaiseAction(OnGameStarted);
+
+        backgroundAudioSource.Play();
     }
 
     /// Quand on meurt
@@ -50,6 +53,8 @@ public class GameFlowManager : MonoBehaviour {
 
         _levelManager.SetPlay(false);
         RaiseAction(OnGameStopped);
+
+        backgroundAudioSource.Stop();
     }
 
     public void PauseGame(){

@@ -16,34 +16,36 @@ public class Level : MonoBehaviour {
 
 	#region Variables
 	private LinkedList<LevelChunk> activeChunks = new LinkedList<LevelChunk>();
-	[SerializeField][Range(0.1f,4f)] private float moveSpeed = 1f;
+	[SerializeField][Range(0.1f,8f)] private float moveSpeed = 1f;
 
 	#endregion
+
+	private void Start(){
+		GenerateAllChunks();
+	}
 
 	public void GenerateAllChunks(bool blank = true){
 		int count = simultaneousChunks - activeChunks.Count;
 		for(int i = 0; i < count; i++){
-			GenerateChunk(transform.position + transform.forward * (chunkSize * i + chunkDespawnDistance), Quaternion.identity, blank);
-		}
+            //GenerateChunk(transform.position + transform.forward * (chunkSize * i + chunkDespawnDistance), Quaternion.identity, blank);
+            GenerateChunk(transform.position + transform.forward * (chunkSize * i + chunkDespawnDistance), Quaternion.AngleAxis(90f, Vector3.up), blank);
+        }
 	}
 
-	public void TogglePlay() {
-		play = !play;
+	public void SetPlay(bool play) {
+		this.play = play;
 	}
 
 	#region MonoBehaviour messages
 
 	private void Update(){
 
-#if UNITY_EDITOR
-/// FOR DEBUG PURPOSES
-		if(Input.GetKeyDown(KeyCode.P)){
-			if(activeChunks.Count < simultaneousChunks)
-				GenerateAllChunks();
-
-			TogglePlay();
-		}
-#endif
+// #if UNITY_EDITOR
+// /// FOR DEBUG PURPOSES
+// 		if(Input.GetKeyDown(KeyCode.L)){
+// 			SetPlay();
+// 		}
+// #endif
 		if(play){
 			ClearUnusedChunks();
 			GenerateNewChunks();
@@ -62,11 +64,13 @@ public class Level : MonoBehaviour {
 	private void GenerateNewChunks(){
 		if(activeChunks.Count < simultaneousChunks) {
 			if(activeChunks.Count == 0) {
-				GenerateChunk(transform.position + transform.forward * chunkSpawnDistance, Quaternion.identity);
-			} else if (activeChunks.First.Value.transform.position.z + chunkSize < chunkSpawnDistance) 
+                GenerateChunk(transform.position + transform.forward * chunkSpawnDistance, Quaternion.AngleAxis(90f, Vector3.up));
+                //GenerateChunk(transform.position + transform.forward * chunkSpawnDistance, Quaternion.identity);
+            } else if (activeChunks.First.Value.transform.position.z + chunkSize < chunkSpawnDistance) 
 			{
-				GenerateChunk(transform.position + transform.forward * (activeChunks.First.Value.transform.position.z + chunkSize), Quaternion.identity);
-			}
+                //GenerateChunk(transform.position + transform.forward * (activeChunks.First.Value.transform.position.z + chunkSize), Quaternion.identity);
+                GenerateChunk(transform.position + transform.forward * (activeChunks.First.Value.transform.position.z + chunkSize), Quaternion.AngleAxis(90f, Vector3.up));
+            }
 		}
 	}
 

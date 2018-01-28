@@ -9,6 +9,7 @@ public class MenuManager : MonoBehaviour {
     [SerializeField] GameObject _mainMenuCanvas = null;
     [SerializeField] TriggerEventAnimation _showTriggerEvent = null;
     [SerializeField] TriggerEventAnimation _hideTriggerEvent = null;
+    [SerializeField] GameMenuManager _gameMenuManager = null;
 
     void Start()
     {
@@ -19,6 +20,7 @@ public class MenuManager : MonoBehaviour {
         _hideTriggerEvent.OnAnimationEnd.RemoveListener(StartGame);
         _mainMenuCanvas.SetActive(false);
         _gameFlowManager.StartGame();
+        _gameMenuManager.InitializeInputHandlers();
     }
 
     public void GoToMainMenu()

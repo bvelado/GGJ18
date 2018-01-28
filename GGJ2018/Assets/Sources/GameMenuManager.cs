@@ -14,7 +14,8 @@ public class GameMenuManager : MonoBehaviour {
     public event Action OnGameMenuHidden;
 
 	public void InitializeInputHandlers(){
-		_inputManager.OnBackKeyPressed.AddListener(PauseGame);
+        _inputManager.OnBackKeyPressed.RemoveListener(PauseGame);
+        _inputManager.OnBackKeyPressed.AddListener(PauseGame);
 	}
 
     void ResumeGame (GameObject menu) {

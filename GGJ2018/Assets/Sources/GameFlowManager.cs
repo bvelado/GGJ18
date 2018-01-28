@@ -13,12 +13,18 @@ public class GameFlowManager : MonoBehaviour {
     public event Action OnGameStarted;
     public event Action OnGamePaused;
     public event Action OnGameResumed;
+    public event Action OnGameStopped;
 
     public void StartGame()
     {
         _inputManager.OnGivePaperP1KeyPressed += P1GivePaper;
         _inputManager.OnGivePaperP2KeyPressed += P2GivePaper;
 
+        _player1.PlayerCollidedWithObstacle.AddListener(StopGame);
+        _player2.PlayerCollidedWithObstacle.AddListener(StopGame);
+
+        _levelManager.Clear();
+        _levelManager.GenerateAllChunks(true, 0.4f);
         _levelManager.SetPlay(true);
         RaiseAction(OnGameStarted);
     }
@@ -29,7 +35,11 @@ public class GameFlowManager : MonoBehaviour {
         _inputManager.OnGivePaperP1KeyPressed -= P1GivePaper;
         _inputManager.OnGivePaperP2KeyPressed -= P2GivePaper;
 
+        _player1.PlayerCollidedWithObstacle.RemoveListener(StopGame);
+        _player2.PlayerCollidedWithObstacle.RemoveListener(StopGame);
+
         _levelManager.SetPlay(false);
+        RaiseAction(OnGameStopped);
     }
 
     public void PauseGame(){

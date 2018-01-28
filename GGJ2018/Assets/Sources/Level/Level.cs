@@ -20,6 +20,10 @@ public class Level : MonoBehaviour {
 
 	#endregion
 
+    public float MovementSpeed {
+        get { return moveSpeed; }
+    }
+
 	private void Start(){
 		GenerateAllChunks();
 	}

@@ -10,12 +10,17 @@ public class GameFlowManager : MonoBehaviour {
     [SerializeField] PlayerController _player1 = null;
     [SerializeField] PlayerController _player2 = null;
 
+    public event Action OnGameStarted;
+    public event Action OnGamePaused;
+    public event Action OnGameResumed;
+
     public void StartGame()
     {
         _inputManager.OnGivePaperP1KeyPressed += P1GivePaper;
         _inputManager.OnGivePaperP2KeyPressed += P2GivePaper;
 
         _levelManager.SetPlay(true);
+        RaiseAction(OnGameStarted);
     }
 
     /// Quand on meurt
@@ -32,6 +37,7 @@ public class GameFlowManager : MonoBehaviour {
         _inputManager.OnGivePaperP2KeyPressed -= P2GivePaper;
 
         _levelManager.SetPlay(false);
+        RaiseAction(OnGamePaused);
     }
 
     public void ResumeGame(){
@@ -39,6 +45,7 @@ public class GameFlowManager : MonoBehaviour {
         _inputManager.OnGivePaperP2KeyPressed += P2GivePaper;
 
         _levelManager.SetPlay(true);
+        RaiseAction(OnGameResumed);
     }
 
     private void P1GivePaper()
@@ -51,5 +58,14 @@ public class GameFlowManager : MonoBehaviour {
     {
         _player1.TakePaper();
         _player2.GivePaper();
+    }
+
+    void RaiseAction(Action theAction)
+    {
+        var actionCopy = theAction;
+        if(actionCopy != null)
+        {
+            actionCopy();
+        }
     }
 }

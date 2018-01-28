@@ -16,12 +16,12 @@ public class ScoreController : MonoBehaviour {
         _gameFlowManager.OnGamePaused += StopScoring;
         _gameFlowManager.OnGameResumed += ResumeScoring;
         _gameFlowManager.OnGameStarted += StartScoring;
-        // _gameFlowManager.OnGameStopped += StopScoring;
+        _gameFlowManager.OnGameStopped += StopScoring;
 	}
 
     private void StartScoring()
     {
-        _gameFlowManager.OnGameStarted -= StartScoring;
+        _score = 0f;
         _scoreLabel.text = "0";
         _scoring = true;
     }

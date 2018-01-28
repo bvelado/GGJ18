@@ -18,6 +18,8 @@ public class Level : MonoBehaviour {
 	private LinkedList<LevelChunk> activeChunks = new LinkedList<LevelChunk>();
 	[SerializeField][Range(0.1f,8f)] private float moveSpeed = 1f;
 
+    float _baseMoveSpeed;
+
 	#endregion
 
     public float MovementSpeed {
@@ -26,11 +28,13 @@ public class Level : MonoBehaviour {
 
 	private void Start(){
 		GenerateAllChunks(true, 0.4f);
+        _baseMoveSpeed = moveSpeed;
 	}
 
 	public void Clear(){
 		while(activeChunks.Count > 0){
 			ClearChunk(activeChunks.Last.Value);
+            moveSpeed = _baseMoveSpeed;
 		}
 	}
 
@@ -60,6 +64,7 @@ public class Level : MonoBehaviour {
 			ClearUnusedChunks();
 			GenerateNewChunks();
 			MoveActiveChunks();
+            moveSpeed += Time.deltaTime * 0.2f;
 		}
 	}
 

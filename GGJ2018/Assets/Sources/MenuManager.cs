@@ -11,6 +11,9 @@ public class MenuManager : MonoBehaviour {
     [SerializeField] TriggerEventAnimation _hideTriggerEvent = null;
     [SerializeField] GameMenuManager _gameMenuManager = null;
 
+    public event Action OnMainMenuDisplayed;
+    public event Action OnMainMenuHidden;
+
     void Start()
     {
         GoToMainMenu();
@@ -32,12 +35,22 @@ public class MenuManager : MonoBehaviour {
 
     private void RegisterSpaceKeyEvent(GameObject mainMenu)
     {
+        var eventCopy = OnMainMenuDisplayed;
+        if(eventCopy != null)
+        {
+            eventCopy();
+        }
         _showTriggerEvent.OnAnimationEnd.RemoveListener(RegisterSpaceKeyEvent);
         _inputManager.OnSpaceKeyPressed.AddListener(HideMenu);
     }
 
     private void HideMenu()
     {
+        var eventCopy = OnMainMenuHidden;
+        if (eventCopy != null)
+        {
+            eventCopy();
+        }
         _inputManager.OnSpaceKeyPressed.RemoveListener(HideMenu);
         _hideTriggerEvent.OnAnimationEnd.AddListener(StartGame);
         _mainMenuCanvas.GetComponent<Animator>().SetTrigger("Hide");

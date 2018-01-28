@@ -54,5 +54,6 @@ public class PlayerController : MonoBehaviour {
 
     public void OnObstacleHit(Collider other) {
         GetComponentInChildren<AudioSource>().Play();
+        GetComponent<Animator>().SetTrigger("Crash");
     }
 }

@@ -19,11 +19,11 @@ public class CustomMaterialRender : MonoBehaviour {
 
 	private void OnEnable(){
 		firstBufferRT = 
-			new RenderTexture(1024,1024,0,RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default);
+			new RenderTexture(512,512,0,RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default);
 		firstBufferRT.Create();
 
 		secondBufferRT =
-			new RenderTexture(1024,1024,0,RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default);
+			new RenderTexture(512,512,0,RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default);
 		secondBufferRT.Create();
 
 		if(!dst.IsCreated())
@@ -43,6 +43,9 @@ public class CustomMaterialRender : MonoBehaviour {
 		firstBufferRT.DiscardContents();
 		firstBufferRT.Release();
 		Destroy(firstBufferRT);
+		secondBufferRT.DiscardContents();
+		secondBufferRT.Release();
+		Destroy(secondBufferRT);
 	}
 
 	private void Update(){

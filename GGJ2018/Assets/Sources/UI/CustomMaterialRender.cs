@@ -11,39 +11,38 @@ public class CustomMaterialRender : MonoBehaviour {
 	[SerializeField] private Material mat;
 	[SerializeField] private bool renderEveryFrame;
 	[SerializeField] private int passes = 2;
-	[SerializeField] private bool render = false;
 
-	private RenderTexture srcRt;
-	private RenderTexture bufferRt;
+	private RenderTexture firstBufferRT;
+	private RenderTexture secondBufferRT;
 
 	private WaitForEndOfFrame endOfFrame = new WaitForEndOfFrame();
 
 	private void OnEnable(){
-		srcRt = 
+		firstBufferRT = 
 			new RenderTexture(1024,1024,0,RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default);
-		srcRt.Create();
+		firstBufferRT.Create();
 
-		bufferRt =
+		secondBufferRT =
 			new RenderTexture(1024,1024,0,RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default);
-		bufferRt.Create();
+		secondBufferRT.Create();
 
 		if(!dst.IsCreated())
 			dst.Create();
 
-		if(!srcRt.IsCreated())
+		if(!firstBufferRT.IsCreated())
 			throw new Exception("Cannot create src RenderTexture.");
-		if(!bufferRt.IsCreated())
+		if(!secondBufferRT.IsCreated())
 			throw new Exception("Cannot create buffer RenderTexture.");
 		if(!dst.IsCreated())
 			throw new Exception("Cannot create dst RenderTexture.");
 
-		mat.SetTexture("_MainTex", srcRt);
+		mat.SetTexture("_MainTex", firstBufferRT);
 	}
 
 	private void OnDisable(){
-		srcRt.DiscardContents();
-		srcRt.Release();
-		Destroy(srcRt);
+		firstBufferRT.DiscardContents();
+		firstBufferRT.Release();
+		Destroy(firstBufferRT);
 	}
 
 	private void Update(){
@@ -56,9 +55,9 @@ public class CustomMaterialRender : MonoBehaviour {
 		}
 			
 
-		// if(renderEveryFrame){
-		// 	DoRender();
-		// }
+		if(renderEveryFrame){
+			DoRender();
+		}
 	}
 
 	public void Execute(){
@@ -76,18 +75,19 @@ public class CustomMaterialRender : MonoBehaviour {
 
 	private void DoRender(){
 		var oldTargetTexture = src.targetTexture;
-		src.targetTexture = srcRt;
+		src.targetTexture = firstBufferRT;
 		src.Render();
 		src.targetTexture = oldTargetTexture;
 
+		mat.SetTexture("_MainTex", firstBufferRT);
 		if(passes > 1) {
 			for(int i = 0; i < passes; i++){
-				Graphics.Blit( i%2>0 ? bufferRt : srcRt, i%2>0 ? srcRt : bufferRt, mat);
-				mat.SetTexture("_MainTex", i%2>0 ? srcRt : bufferRt);
+				Graphics.Blit( i%2>0 ? secondBufferRT : firstBufferRT, i%2>0 ? firstBufferRT : secondBufferRT, mat);
+				mat.SetTexture("_MainTex", i%2>0 ? firstBufferRT : secondBufferRT);
 			}
-			Graphics.Blit((passes-1)%2>0 ? srcRt : bufferRt, dst);
+			Graphics.Blit((passes-1)%2>0 ? firstBufferRT : secondBufferRT, dst);
 		} else {
-			Graphics.Blit(srcRt, dst, mat);
+			Graphics.Blit(firstBufferRT, dst, mat);
 		}
 	}
 }

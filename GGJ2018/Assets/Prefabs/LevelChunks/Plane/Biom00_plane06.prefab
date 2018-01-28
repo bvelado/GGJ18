@@ -124,7 +124,6 @@ GameObject:
   - component: {fileID: 33150990404300392}
   - component: {fileID: 23157050779610400}
   - component: {fileID: 114752965287565974}
-  - component: {fileID: 114462734396046350}
   m_Layer: 0
   m_Name: Biom00_plane06
   m_TagString: Untagged
@@ -748,7 +747,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1464302045929336}
-  m_LocalRotation: {x: 0.55778825, y: -0.5286491, z: 0.28524944, w: 0.5727437}
+  m_LocalRotation: {x: 0.5577882, y: -0.52864903, z: 0.2852494, w: 0.57274365}
   m_LocalPosition: {x: 8.077054, y: 0.21661001, z: 11.790131}
   m_LocalScale: {x: 1.8065794, y: 1.8065801, z: 1.8065792}
   m_Children: []
@@ -2606,17 +2605,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1467700720416000}
   m_Mesh: {fileID: 4300088, guid: dcda1b3a7e72386468be8e38cc7ef5d1, type: 3}
---- !u!114 &114462734396046350
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1253611338089898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9624be48ef144c645ae19f04615793f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114752965287565974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2628,3 +2616,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9624be48ef144c645ae19f04615793f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allowedObstacles:
+  - {fileID: 114393800635149726, guid: ca2b797a050fe9e4fbe4d060159f7f73, type: 2}
+  - {fileID: 114622933932392078, guid: 0cc73d6d9a21ca342891a61b7689e454, type: 2}
+  - {fileID: 114011628126983042, guid: f0f6d223179c675448c23dd6113748ad, type: 2}
+  - {fileID: 114873005954344340, guid: b628763f82e9700499ff762467896ec0, type: 2}
+  - {fileID: 114185605464023854, guid: 5f7323639f6536440a59484860734117, type: 2}
+  - {fileID: 114707217316557686, guid: ef52ab3596ee412488524c24667d2284, type: 2}
